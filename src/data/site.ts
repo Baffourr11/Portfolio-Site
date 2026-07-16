@@ -34,7 +34,22 @@ export const techStack = [
   "Supabase",
 ] as const;
 
-export const projects = [
+export type Project = {
+  id: string;
+  meta: string;
+  title: string;
+  description: string;
+  tags: readonly string[];
+  image?: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  gradient: string;
+  reverse: boolean;
+  aosDelay: number;
+  href: string;
+};
+
+export const projects: Project[] = [
   {
     id: "01",
     meta: "BloodBank Management system",
@@ -83,7 +98,7 @@ export const projects = [
     aosDelay: 200,
     href: "#",
   },
-] as const;
+];
 
 export const skillGroups = [
   {

@@ -11,65 +11,68 @@ export function Work() {
         intro={sectionIntros.work}
       />
       <div className="projects">
-        {projects.map((project) => (
-          <article
-            key={project.id}
-            className={`project${project.reverse ? " project-reverse" : ""}`}
-            data-aos
-            data-aos-delay={project.aosDelay}
-          >
-            <a
-              href={project.href}
-              className="project-visual"
-              style={
-                "image" in project && project.image
-                  ? undefined
-                  : { background: project.gradient }
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`View ${project.title}`}
+        {projects.map((project) => {
+          const hasImage =
+            Boolean(project.image) &&
+            Boolean(project.imageWidth) &&
+            Boolean(project.imageHeight);
+
+          return (
+            <article
+              key={project.id}
+              className={`project${project.reverse ? " project-reverse" : ""}`}
+              data-aos
+              data-aos-delay={project.aosDelay}
             >
-              <div className="project-visual-inner">
-                {"image" in project &&
-                project.image &&
-                "imageWidth" in project ? (
-                  <Image
-                    src={project.image}
-                    alt={`${project.title} screenshot`}
-                    width={project.imageWidth}
-                    height={project.imageHeight}
-                    className="project-image"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                ) : (
-                  <>
-                    <span className="project-number mono">{project.id}</span>
-                    <span className="project-view mono">View →</span>
-                  </>
-                )}
-              </div>
-            </a>
-            <div className="project-info">
-              <span className="project-meta mono">{project.meta}</span>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <div className="project-tags">
-                {project.tags.map((tag) => (
-                  <span key={tag}>{tag}</span>
-                ))}
-              </div>
               <a
                 href={project.href}
-                className="project-link mono"
+                className="project-visual"
+                style={
+                  hasImage ? undefined : { background: project.gradient }
+                }
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={`View ${project.title}`}
               >
-                View project →
+                <div className="project-visual-inner">
+                  {hasImage ? (
+                    <Image
+                      src={project.image!}
+                      alt={`${project.title} screenshot`}
+                      width={project.imageWidth!}
+                      height={project.imageHeight!}
+                      className="project-image"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  ) : (
+                    <>
+                      <span className="project-number mono">{project.id}</span>
+                      <span className="project-view mono">View →</span>
+                    </>
+                  )}
+                </div>
               </a>
-            </div>
-          </article>
-        ))}
+              <div className="project-info">
+                <span className="project-meta mono">{project.meta}</span>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
+                <a
+                  href={project.href}
+                  className="project-link mono"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View project →
+                </a>
+              </div>
+            </article>
+          );
+        })}
       </div>
 
       <aside className="pending-work" data-aos>
