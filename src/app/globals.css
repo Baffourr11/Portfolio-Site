@@ -559,10 +559,23 @@ a {
   transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s ease;
 }
 
+.project-visual:has(.project-image) {
+  border-color: rgba(34, 211, 238, 0.2);
+  box-shadow:
+    0 4px 14px rgba(34, 211, 238, 0.15),
+    0 2px 6px rgba(34, 211, 238, 0.1);
+}
+
 .project:hover .project-visual {
   border-color: rgba(34, 211, 238, 0.35);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   transform: scale(1.02);
+}
+
+.project:hover .project-visual:has(.project-image) {
+  box-shadow:
+    0 8px 28px rgba(34, 211, 238, 0.28),
+    0 4px 12px rgba(34, 211, 238, 0.18);
 }
 
 .project-visual-inner {
@@ -576,14 +589,18 @@ a {
   overflow: hidden;
 }
 
-.project-image {
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.4s ease;
+.project-visual-inner:has(.project-image) {
+  aspect-ratio: unset;
+  display: block;
+  height: auto;
+  line-height: 0;
 }
 
-.project:hover .project-image {
-  transform: scale(1.03);
+.project-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
 }
 
 .project-visual-inner::after {
@@ -597,7 +614,7 @@ a {
 }
 
 .project:has(.project-image):hover .project-visual-inner::after {
-  opacity: 1;
+  opacity: 0.35;
 }
 
 .project-number {
@@ -633,6 +650,63 @@ a {
 }
 
 .project-link:hover {
+  transform: translateX(4px);
+}
+
+.pending-work {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem 2rem;
+  margin-top: 4rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px dashed rgba(34, 211, 238, 0.35);
+  border-radius: var(--radius);
+  background: rgba(34, 211, 238, 0.04);
+}
+
+.pending-work-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.55);
+  flex-shrink: 0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.pending-work-copy {
+  flex: 1;
+  min-width: 16rem;
+}
+
+.pending-work-label {
+  display: block;
+  color: var(--accent);
+  font-size: 0.7rem;
+  margin-bottom: 0.35rem;
+}
+
+.pending-work-copy h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.pending-work-copy p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 40rem;
+}
+
+.pending-work-link {
+  color: var(--accent);
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.pending-work-link:hover {
   transform: translateX(4px);
 }
 

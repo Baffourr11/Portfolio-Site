@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { projects, sectionIntros } from "@/data/site";
+import { pendingWork, projects, sectionIntros } from "@/data/site";
 import { SectionHeader } from "./SectionHeader";
 
 export function Work() {
@@ -31,11 +31,14 @@ export function Work() {
               aria-label={`View ${project.title}`}
             >
               <div className="project-visual-inner">
-                {"image" in project && project.image ? (
+                {"image" in project &&
+                project.image &&
+                "imageWidth" in project ? (
                   <Image
                     src={project.image}
                     alt={`${project.title} screenshot`}
-                    fill
+                    width={project.imageWidth}
+                    height={project.imageHeight}
                     className="project-image"
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
@@ -68,6 +71,18 @@ export function Work() {
           </article>
         ))}
       </div>
+
+      <aside className="pending-work" data-aos>
+        <span className="pending-work-dot" aria-hidden="true" />
+        <div className="pending-work-copy">
+          <span className="pending-work-label mono">{pendingWork.label}</span>
+          <h3>{pendingWork.title}</h3>
+          <p>{pendingWork.description}</p>
+        </div>
+        <a href="#contact" className="pending-work-link mono">
+          Get in touch →
+        </a>
+      </aside>
     </section>
   );
 }

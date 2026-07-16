@@ -13,12 +13,13 @@ export function About() {
         <div className="about-content">
           <p className="about-lead">
             I&apos;m a software developer, graphic designer, and frontend
-            developer focused on building fast, accessible digital experiences.
+            designer focused on building fast, accessible digital experiences.
           </p>
           <p>
             I work across the stack — from UI/UX in Figma to web apps with React
             and Next.js, and mobile with Flutter. I use Supabase and Firebase for
-            backend and love turning designs into clean, maintainable code.
+            backend and love turning designs into clean, maintainable code all
+            while exploring graphic designing using Photoshop.
           </p>
           <p className="about-location mono">{site.location}</p>
         </div>
